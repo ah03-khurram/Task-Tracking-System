@@ -47,7 +47,7 @@ export class Task {
             }
         }
         if (updateHistory) {
-            this.history_update();
+            this.history_update();  // Update the task's history log
         }
     }
 
@@ -122,7 +122,7 @@ export class Task {
     getSpecificTimeHistory(timestamp){
         let taskHistory;
         for (let i = 0; i < this.history.length; i++) {
-            if (this.history[i]["updatedAt"] <= timestamp) {
+            if (this.history[i]["updatedAt"] <= timestamp) {  // Find the most recent history entry before the timestamp
                 taskHistory = this.history[i];
             }
         }

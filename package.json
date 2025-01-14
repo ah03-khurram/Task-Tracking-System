@@ -1,5 +1,5 @@
 {
-  "name": "cs3100project-ah03-khurram",
+  "name": "task-tracking-system",
   "version": "1.0.0",
   "description": "This is the project repo for COMP3100 F24 term project.",
   "main": "index.js",
@@ -7,7 +7,8 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "tests"
+    "test": "tests",
+    "start": "node serve.mjs"
   },
   "author": "",
   "license": "ISC",

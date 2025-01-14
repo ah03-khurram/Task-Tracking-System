@@ -9,6 +9,10 @@ export function tasks_init() {
     persist.initStore('task_collection')
 };
 
+
+/**
+ * Creates a new task and adds it to the task collection.
+ */
 export async function createTask(req, res) {
     let id = req.body.id;
     let title = req.body.title;
@@ -22,23 +26,23 @@ export async function createTask(req, res) {
     let assignee = req.body.assignee;
     let comments = req.body.comments;
 
-    if (!id || !title || !description || !createdBy) {
+    if (!id || !title || !description || !createdBy) {  // Check for required fields
         let reply = {
             success: false,
             message: 'Missing required fields',
             task: null
         }
-        return res.status(400).send(reply);
+        return res.status(400).send(reply);  // Return 400 Bad Request
     }
 
     let prev_task = await persist.find_tasks('task_collection', id);
-    if (prev_task.length > 0) {
+    if (prev_task.length > 0) {  // Check if task with same ID already exists
         let reply = {
             success: false,
             message: 'Task with same ID already exists',
             previous: prev_task[0]
         }
-        return res.status(409).send(reply);
+        return res.status(409).send(reply);  // Return 409 Conflict
     }
 
     let task = new Task(id, title, description, status, priority, deadline, tags, createdBy, createdAt, null, assignee, [], comments, false);
@@ -51,14 +55,16 @@ export async function createTask(req, res) {
         task: task
     }
     
-    return res.status(200).send(reply);
+    return res.status(200).send(reply); // Return 200 OK
 }
 
-
+/**
+ * Finds a task in the task collection.
+ */
 export async function findTask(req, res) {
     let id = req.query.id;
 
-    let tasks = await persist.find_tasks('task_collection', id);
+    let tasks = await persist.find_tasks('task_collection', id);  // Find task by ID
     let reply;
     if (tasks.length === 0) {
         reply = {
@@ -66,9 +72,10 @@ export async function findTask(req, res) {
             message: 'Task not found',
             task: null
         }
-        return res.status(404).send(reply);
+        return res.status(404).send(reply);  // Return 404 Not Found
     }
 
+    // If ID is provided, return only that task, else return all tasks
     if (id) {
         reply = {
             success: true,
@@ -85,10 +92,12 @@ export async function findTask(req, res) {
         }
     }
 
-    return res.status(200).send(reply);
+    return res.status(200).send(reply);  // Return 200 OK
 }
 
-
+/**
+ * Updates a task in the task collection.
+ */
 export async function updateTask(req, res) {
     let task_id = req.query.id;
     let updatedInfo = req.body;
@@ -102,10 +111,10 @@ export async function updateTask(req, res) {
             message: 'Task not found',
             task: null
         }
-        return res.status(404).send(reply);
+        return res.status(404).send(reply);  // Return 404 Not Found
     }
 
-    update_task[0].updateField(updatedInfo);
+    update_task[0].updateField(updatedInfo);  // Update the task
 
     try {
         await persist.update_task('task_collection', task_id, update_task[0]);
@@ -114,17 +123,20 @@ export async function updateTask(req, res) {
             message: 'Task updated',
             task: update_task[0]
         }
-        return res.status(200).send(reply);
+        return res.status(200).send(reply);  // Return 200 OK
     } catch (e) {
         reply = {
             success: false,
             message: e.message,
             task: null
         }
-        return res.status(500).send(reply);
+        return res.status(500).send(reply);  // Return 500 Internal Server Error
     }
 }
 
+/**
+ * Gets the task history at a specific timestamp.
+ */
 export async function getTaskDetailByTimestamp(req, res) {
 
     let id = req.query.id;
@@ -142,9 +154,9 @@ export async function getTaskDetailByTimestamp(req, res) {
         return res.status(404).send(reply);
     }
 
-    let taskHistoryDetail = task[0].getSpecificTimeHistory(timestamp);
+    let taskHistoryDetail = task[0].getSpecificTimeHistory(timestamp);  // Get task history at specific timestamp
 
-    if (Object.keys(taskHistoryDetail).length > 0) {
+    if (Object.keys(taskHistoryDetail).length > 0) {  // Check if history is found
         reply = {
             success: true,
             message: 'Task history found',
@@ -159,22 +171,25 @@ export async function getTaskDetailByTimestamp(req, res) {
         task: null
     }
 
-    return res.status(404).send(reply);
+    return res.status(404).send(reply);  // Return 404 Not Found
 }
 
+/**
+ * Adds a comment to a task.
+ */
 export async function addTaskComment(req, res) {
     let id = req.query.id;
     let comment = req.body.comment;
     let commentedBy = req.body.commentedBy;
     let reply;
 
-    if (!comment || !commentedBy) {
+    if (!comment || !commentedBy) {  // Check for required fields
         reply = {
             success: false,
             message: 'Missing required fields',
             comment: null
         }
-        return res.status(400).send(reply);
+        return res.status(400).send(reply);  // Return 400 Bad Request
     }
 
     let task = await persist.find_tasks('task_collection', id);
@@ -188,9 +203,9 @@ export async function addTaskComment(req, res) {
         return res.status(404).send(reply);
     }
 
-    task[0].addComment(comment, commentedBy);
+    task[0].addComment(comment, commentedBy);  // Add comment to task
 
-    await persist.update_task('task_collection', id, task[0]);
+    await persist.update_task('task_collection', id, task[0]);  // Update task
 
     let updated_task = await persist.find_tasks('task_collection', id);
 
@@ -200,7 +215,7 @@ export async function addTaskComment(req, res) {
             message: 'Comment added',
             comment: updated_task[0].comments[updated_task[0].comments.length - 1]
         }
-        return res.status(200).send(reply);
+        return res.status(200).send(reply);  // Return 200 OK
     }
     else {
         reply = {
@@ -208,10 +223,13 @@ export async function addTaskComment(req, res) {
             message: 'Comment not added',
             comment: null
         }
-        return res.status(500).send(reply);
+        return res.status(500).send(reply);  // Return 500 Internal Server Error
     }
 }
 
+/**
+ * Adds tags to a task.
+ */
 export async function addTaskTags(req, res) {
     let id = req.query.id;
     let tags = req.body.tags;
@@ -228,7 +246,7 @@ export async function addTaskTags(req, res) {
         return res.status(404).send(reply);
     }
 
-    for (let i = 0; i < tags.length; i++) {
+    for (let i = 0; i < tags.length; i++) {  // Add tags to task
         task[0].addTag(tags[i]);
     }
 
@@ -243,6 +261,9 @@ export async function addTaskTags(req, res) {
     return res.status(200).send(reply);
 }
 
+/**
+ * Removes tags from a task.
+ */
 export async function removeTaskTags(req, res) {
     let id = req.query.id;
     let tags = req.body.tags;
@@ -260,7 +281,7 @@ export async function removeTaskTags(req, res) {
     }
 
     for (let i = 0; i < tags.length; i++) {
-        task[0].removeTag(tags[i]);
+        task[0].removeTag(tags[i]);  // Remove tags from task
     }
 
     await persist.update_task('task_collection', id, task[0]);

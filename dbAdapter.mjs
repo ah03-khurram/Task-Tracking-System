@@ -4,7 +4,6 @@
  * 
  * @module dbAdapter
  * @author Khurram Ahmed
- * @version 0.1
  */
 
 import { MongoClient } from 'mongodb';
@@ -80,14 +79,15 @@ async function add_task(cSetName, t) {
     return true;
 }
 
+
 /**
- * update a contact info in the db/persistance tech
- * 
- * @param {string} cSetName - name of the storage segment contact will be added to 
- * @param {string} who - current name of contact to update
- * @param {Contact} c - update information
- * @returns 'Contact was deleted' - if contact delete is successful
- * @throws an error if task_id was not found 
+ * Updates a task in the specified collection with the provided updated information.
+ *
+ * @param {string} cSetName - The name of the collection set.
+ * @param {string} task_id - The ID of the task to be updated.
+ * @param {Object} updatedInfo - An object containing the updated task information.
+ * @returns {string} A string that resolves to a success message if the task is updated.
+ * @throws {Error} Throws an error if the task with the specified ID is not found.
  */
 async function update_task(cSetName, task_id, updatedInfo) {
     let collection = await _get_tasks_collection(cSetName);
@@ -118,4 +118,4 @@ async function find_tasks(cSetName, id = null) {
     return objs.map(o => new Task(o.id, o.title, o.description, o.status, o.priority, o.deadline, o.tags, o.createdBy, o.createdAt, o.updatedAt, o.assignee, o.history, o.comments, true));
 }
 
-export default { closeStore, initStore, add_task, update_task, find_tasks };
+export default { closeStore, initStore, add_task, update_task, find_tasks };  // Export the functions for use in other modules
