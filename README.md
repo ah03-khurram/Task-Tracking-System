@@ -34,7 +34,7 @@ The Task Tracking System is a project management tool designed to help teams and
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/ah03-khurram/Web-Based-Task-Tracking-System.git
+    git clone https://github.com/ah03-khurram/Task-Tracking-System.git
     ```
 
 2. Install dependencies:
