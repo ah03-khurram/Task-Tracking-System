@@ -35,7 +35,6 @@ The Task Tracking System is a project management tool designed to help teams and
 1. Clone the repository:
     ```sh
     git clone https://github.com/ah03-khurram/Web-Based-Task-Tracking-System.git
-    cd task-tracking-system
     ```
 
 2. Install dependencies:
@@ -78,7 +77,7 @@ To run the unit tests for this project, follow these steps:
 2. Run the tests:
     `node --test .\tests\apiTests.mjs`
 
-The unit tests are located in the [tests](/tests) directory and cover various aspects of the application, including task creation, updating, deletion, and retrieval.
+The unit tests are located in the [tests](/tests/apiTests.mjs) directory and cover various aspects of the application, including task creation, updating, deletion, and retrieval.
 
 ## Technologies Used
 
