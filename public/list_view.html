@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="style.css" /> 
+  <title>Task List</title>
+
+  <script>
+
+    var even_row = 'even-row';
+    var odd_row = 'odd-row';
+
+    function list_view(task, row) {
+        const taskTemplate = document.getElementById("taskTemplate");
+        const taskElement = taskTemplate.content.cloneNode(true);
+        
+        taskElement.querySelector(".table-cell-ID").textContent = task.id;
+        taskElement.querySelector(".table-cell-title").textContent = task.title;
+        taskElement.querySelector(".table-cell-description").textContent = task.description;
+        taskElement.querySelector(".table-cell-deadline").textContent = task.deadline;
+        taskElement.querySelector(".table-cell-state").textContent = task.status;
+
+        taskElement.querySelector(".table-row").classList.add(row % 2 === 0 ? even_row : odd_row);
+    
+        document.querySelector(".list-view").appendChild(taskElement);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+
+      window.addEventListener("load", (event) => {
+        fetch('/tasks')
+          .then(response => response.json())
+          .then(data => {
+            if (data.task.length === 0) {
+              document.querySelector(".list-view").style.display = "none";
+              return;
+            }
+            else {
+              document.querySelector(".list-view").removeAttribute("style");
+              for (let i = 0; i < data.task.length; i++) {
+                list_view(data.task[i], i);
+              }
+            }
+          });
+      });
+
+    });
+
+  </script>
+
+  <template id="taskTemplate">
+    <div class="table-row">
+      <div class="table-cell-ID"></div>
+      <div class="table-cell-title"></div>
+      <div class="table-cell-description"></div>
+      <div class="table-cell-deadline"></div>
+      <div class="table-cell-state"></div>
+    </div>
+  </template>
+
+</head>
+
+<body>
+    <div class="app">
+        <div class="navbar">
+            Task Tracker List
+        </div>
+        <div class="tab">
+          <form>
+            <button type="submit" id="btn-board-all" class="tablinks" formaction="task_collection.html">Tasks</button>
+            <button type="submit" class="tablinks" formaction="find_task.html">Find Task</button>
+            <button type="submit" class="tablinks" formaction="task_creation.html">Create New Task</button>
+          </form>
+        </div>
+        <div class="list-view" style="display: none;">
+            <div class="tabhead">
+                <div class="table-cell-ID">ID</div>
+                <div class="table-cell">Title</div>
+                <div class="table-cell">Description</div>
+                <div class="table-cell">Deadline</div>
+                <div class="table-cell">State</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

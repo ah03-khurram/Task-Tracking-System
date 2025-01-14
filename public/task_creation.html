@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        var prev_task;
+        var inputFields = ["task-title", "task-description", "task-creater"];
+        function assembleTask() {
+            const task = {
+                id: document.getElementById("task-id").value,
+                title: document.getElementById("task-title").value,
+                description: document.getElementById("task-description").value,
+                createdBy: document.getElementById("task-creater").value
+            };
+            return task;
+        }
+
+        function adjustWidth() {
+            document.getElementById("task-creation-status").style.width = ((document.getElementById("task-creation-status").value.length) * 0.83) + "ch";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("create-task-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                const task = assembleTask();
+                let options = {
+                    method: "POST",
+                    body: JSON.stringify(task),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch("/task", options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            document.getElementById("task-creation-status").value = "Task created successfully";
+                            adjustWidth();
+                            document.getElementById("creation-status").style.display = "block";
+                        });
+                    } 
+                    else if (response.status === 409) {
+                        response.json().then(reply => {
+                            document.getElementById("task-creation-status").value = reply.message;
+                            adjustWidth();
+                            document.getElementById("creation-status").style.display = "block";
+                            document.getElementById("click-to-show").style.display = "block";
+                            for (let field of inputFields) {
+                                document.getElementById(field).style.backgroundColor = "red";
+                                document.getElementById(field).style.color = "white";
+                            }
+                            prev_task = reply.previous;
+                        });
+                    }
+                    else if (response.status === 400) {
+                        response.json().then(reply => {
+                            document.getElementById("task-creation-status").value = reply.message;
+                            adjustWidth();
+                            document.getElementById("creation-status").style.display = "block";
+                        });
+                    }
+            })
+            .catch(error => {
+                alert('Error - ' + error)
+            });
+        });
+
+        document.getElementById("click-to-show").addEventListener("click", (event) => {
+            event.preventDefault();
+            document.getElementById("task-id").value = prev_task.id;
+            document.getElementById("task-title").value = prev_task.title;
+            document.getElementById("task-description").value = prev_task.description;
+            document.getElementById("task-creater").value = prev_task.createdBy;
+            document.getElementById("click-to-show").style.display = "none";
+            document.getElementById("creation-status").style.display = "none";
+            for (let field of inputFields) {
+                document.getElementById(field).removeAttribute("style");
+            }
+            prev_task = null;
+        });
+    });
+
+    </script>
+
+</head>
+
+
+<body>
+    <div class="app">
+        <div class="navbar">
+            Task Tracker Board
+        </div>
+        <div class="tab">
+            <form>
+                <button type="submit" id="btn-board-all" class="tablinks" formaction="task_collection.html">Tasks</button>
+                <button type="submit" id="btn-list-all" class="tablinks" formaction="list_view.html">List View</button>
+                <button type="submit" class="tablinks" formaction="find_task.html">Find Task</button>
+            </form>
+        </div>
+    
+        <div id="create-task-tab" class="tabcontent">
+            <form>
+                <div>
+                    <label for="task-id">Task ID</label>
+                    <input type="text" id="task-id" name="task-id">
+                </div>
+                <div>
+                    <label for="task-title">Task Title</label>
+                    <input type="text" id="task-title" name="task-title">
+                </div>
+                <div>
+                    <label for="task-description">Task Description</label>
+                    <input type="text" id="task-description" name="task-description">
+                </div>
+                <div>
+                    <label for="task-creater">Task Creater</label>
+                    <input type="text" id="task-creater" name="task-creater">
+                </div>
+                <div class="flex-button-container">
+                    <button id="create-task-btn">Create Task</button>
+                    <button id="click-to-show" style="display: none;">Show Previous</button>
+                </div>
+            </form>
+            <div id="creation-status" style="display: none;">
+                <input type="text" id="task-creation-status" readonly>
+            </div>
+        </div>
+    </div>
+</body>

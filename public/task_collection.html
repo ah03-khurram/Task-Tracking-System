@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="style.css" /> 
+  <title>kanban-Board</title>
+
+  <script>
+
+    var color_list = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+                    '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+                    '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+                    '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+                    '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+                    '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+                    '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+                    '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+                    '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+                    '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+
+    function dragStartHandler(event) {
+      event.dataTransfer.setData("application/my-app", event.target.getAttribute("data-id"));
+      event.dataTransfer.effectAllowed = "move";
+    }
+
+    function set_drop_element(state) {
+      state.addEventListener('dragenter', (event) => {
+        event.preventDefault();
+        if (event.target.className != "kanban-column-list") {
+          event.dataTransfer.dropEffect = "none";
+        }
+        else {
+          event.dataTransfer.dropEffect = "move";
+        }
+
+      });
+
+      state.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        if (event.target.className != "kanban-column-list") {
+          event.dataTransfer.dropEffect = "none";
+        }
+        else {
+          event.dataTransfer.dropEffect = "move";
+        }
+      });
+
+      state.addEventListener('drop', (event) => {
+        event.preventDefault();
+        let task_id = event.dataTransfer.getData("application/my-app");
+        let task = document.querySelector(`.task[data-id="${task_id}"]`);
+        let task_status = task.getAttribute("data-status");
+        let new_status = event.target.previousElementSibling.innerHTML;
+        if (task_status !== new_status) {
+          let options = {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({status: new_status})
+          };
+
+          fetch(`/task?id=${task_id}`, options).then(response => {
+              if (response.status === 200) {
+                task.setAttribute("data-status", new_status);
+                event.target.appendChild(task);
+              } else {
+                alert("Failed to update task state");
+              }
+            });
+        }
+      });
+    }
+
+    function task_maker(task_info) {
+      let taskTemplate = document.getElementById("taskTemplate");
+      let task = taskTemplate.content.cloneNode(true);
+      task.querySelector(".task-title").innerHTML = `${task_info.title}`;  
+
+      if (task_info.tags && task_info.tags.length > 0) {
+          let colorUsed = [];
+          for (let tag of task_info.tags) {
+              let tagTemplate = document.getElementById("task-tag");
+              let tagElement = tagTemplate.content.cloneNode(true);
+              tagElement.querySelector(".board-tag-name").innerHTML = tag;
+              if (colorUsed.length < color_list.length) {
+                colorUsed = [];
+              }
+              let colorIndex = Math.floor(Math.random() * color_list.length);
+                  while (colorUsed.includes(colorIndex)) {
+                      colorIndex = Math.floor(Math.random() * color_list.length);
+                  }
+                  colorUsed.push(colorIndex);
+                  tagElement.querySelector(".board-tag-name").style.backgroundColor = color_list[colorIndex];
+              let taskTagsElement = task.querySelector(".task-tags");
+              if (taskTagsElement) {
+                  taskTagsElement.appendChild(tagElement);
+              } else {
+                  console.error("Task tags element not found");
+              }
+          }
+      }
+
+      task.querySelector(".task").setAttribute("data-status", task_info.status);
+      task.querySelector(".task").setAttribute("data-id", task_info.id);
+
+      task.querySelector(".task").addEventListener("click", () => {
+        window.location.href = `find_task.html?id=${task_info.id}`;
+      });
+
+      task.querySelector(".task").setAttribute("draggable", "true");
+      task.querySelector(".task").addEventListener('dragstart', dragStartHandler);
+
+      let kanbanColumns = document.querySelectorAll(".kanban-column");
+
+      let columnExists = false;
+
+      for (let column of kanbanColumns) {
+        if (column.querySelector(".kanban-column-header").innerHTML === task_info.status) {
+          column.querySelector(".kanban-column-list").appendChild(task);
+          columnExists = true;
+          break;
+        }
+      }
+
+      if (!columnExists) {
+        let columnTemplate = document.getElementById("column-template");
+        let column = columnTemplate.content.cloneNode(true);
+        column.querySelector(".kanban-column-header").innerHTML = task_info.status;
+
+        set_drop_element(column.querySelector(".kanban-column-list"));
+
+        column.querySelector(".kanban-column-list").appendChild(task);
+        document.querySelector(".kanban-container").appendChild(column);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+
+      window.addEventListener("load", (event) => {
+        fetch('/tasks')
+          .then(response => response.json())
+          .then(data => {
+            for (let task of data.task) {
+              task_maker(task);
+            }
+          });
+      });
+
+      document.getElementById("new-kanban-column-button").addEventListener("click", () => {
+        document.querySelector(".new-kanban-column-form").style.display = "flex";
+        document.getElementById("new-kanban-column-button").style.display = "none";
+        document.getElementById("new-kanban-column-submit").style.display = "block";
+        document.getElementById("new-kanban-column-cancel").style.display = "block";
+      });
+
+      document.getElementById("new-kanban-column-submit").addEventListener("click", () => {
+        let newKanbanColumn = document.getElementById("new-kanban-column-name").value;
+
+        if (!newKanbanColumn) {
+          alert("Please enter a column name");
+          return;
+        }
+
+        let kanbanColumns = document.querySelectorAll(".kanban-column");
+        for (let column of kanbanColumns) {
+          if (column.querySelector(".kanban-column-header").innerHTML === newKanbanColumn) {
+            document.getElementById("new-kanban-column-name").value = "";
+            alert("Column already exists");
+            return;
+          }
+        }
+        let columnTemplate = document.getElementById("column-template");
+        let column = columnTemplate.content.cloneNode(true);
+        column.querySelector(".kanban-column-header").innerHTML = newKanbanColumn;
+        set_drop_element(column.querySelector(".kanban-column-list"));
+        document.querySelector(".kanban-container").appendChild(column);
+        document.querySelector(".new-kanban-column-form").style.display = "none";
+        document.getElementById("new-kanban-column-button").style.display = "block";
+        document.getElementById("new-kanban-column-submit").style.display = "none";
+        document.getElementById("new-kanban-column-cancel").style.display = "none";
+        document.getElementById("new-kanban-column-name").value = "";
+      });
+
+      document.getElementById("new-kanban-column-cancel").addEventListener("click", () => {
+        document.querySelector(".new-kanban-column-form").style.display = "none";
+        document.getElementById("new-kanban-column-button").style.display = "block";
+        document.getElementById("new-kanban-column-submit").style.display = "none";
+        document.getElementById("new-kanban-column-cancel").style.display = "none";
+        document.getElementById("new-kanban-column-name").value = "";
+      });
+
+    });
+
+  </script>
+
+  <template id="column-template">
+    <div class="kanban-column">
+      <div class="kanban-column-header"></div>
+      <div class="kanban-column-list"></div>
+    </div>
+  </template>
+
+  <template id="taskTemplate">
+    <div class="task" data-status="">
+      <div class="task-tags"></div>
+      <div class="task-title"></div>
+    </div>
+  </template>
+
+  <template id="task-tag">
+    <span class="board-tag-name"></span>
+  </template>
+</head>
+
+<body>
+    <div class="app">
+        <div class="navbar">
+          Task Tracker Board
+        </div>
+        <div class="tab">
+          <form>
+            <button type="submit" class="tablinks" formaction="find_task.html">Find Task</button>
+            <button type="submit" id="btn-list-all" class="tablinks" formaction="list_view.html">List View</button>
+            <button type="submit" class="tablinks" formaction="task_creation.html">Create New Task</button>
+          </form>
+      </div>
+        <div class="kanban">
+            <div class="kanban-container"></div>
+            <div class="new-kanban-column-option">
+                <div class="new-kanban-column-form" style="display: none;">
+                  <label for="new-kanban-column-name">State Name</label>
+                  <input type="text" id="new-kanban-column-name" />
+                </div>
+                <div class="new-kanban-column-button">
+                  <button id="new-kanban-column-button">Add State</button>
+                  <button id="new-kanban-column-submit" style="display: none;">add</button>
+                  <button id="new-kanban-column-cancel" style="display: none;">cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

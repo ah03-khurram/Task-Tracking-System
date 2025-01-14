@@ -1,0 +1,2074 @@
+[{
+  "id": "1",
+  "title": "Write project proposal",
+  "description": "Draft and finalize the project proposal for the semester.",
+  "status": "In Review",
+  "priority": "High",
+  "deadline": "2024-11-10",
+  "tags": [
+    "proposal",
+    "documentation"
+  ],
+  "createdBy": "Alice",
+  "createdAt": "2024-11-01T09:00:00Z",
+  "updatedAt": {
+    "$date": "2024-12-02T02:22:55.145Z"
+  },
+  "assignee": "Bob",
+  "history": [
+    {
+      "id": "1",
+      "title": "Write project proposal",
+      "description": "Draft and finalize the project proposal for the semester.",
+      "status": "In Review",
+      "priority": "High",
+      "deadline": "2024-11-10",
+      "tags": [
+        "proposal",
+        "documentation"
+      ],
+      "createdBy": "Alice",
+      "createdAt": "2024-11-01T09:00:00Z",
+      "updatedAt": {
+        "$date": "2024-11-01T09:00:00Z"
+      },
+      "assignee": "Bob",
+      "comments": [
+        {
+          "text": "Don't forget to include the features list.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-01T10:00:00Z"
+        },
+        {
+          "text": "I added a rough draft in the shared folder.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-02T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "title": "Updated Task",
+      "description": "Draft and finalize the project proposal for the semester.",
+      "status": "In Review",
+      "priority": "High",
+      "deadline": "2024-11-10",
+      "tags": [
+        "proposal",
+        "documentation"
+      ],
+      "createdBy": "Alice",
+      "createdAt": "2024-11-01T09:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T02:22:55.039Z"
+      },
+      "assignee": "Bob",
+      "comments": [
+        {
+          "text": "Don't forget to include the features list.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-01T10:00:00Z"
+        },
+        {
+          "text": "I added a rough draft in the shared folder.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-02T12:00:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "Don't forget to include the features list.",
+      "commentedBy": "Charlie",
+      "timestamp": "2024-11-01T10:00:00Z"
+    },
+    {
+      "text": "I added a rough draft in the shared folder.",
+      "commentedBy": "Eve",
+      "timestamp": "2024-11-02T12:00:00Z"
+    }
+  ]
+},
+{
+  "id": "2",
+  "title": "Design UI mockups",
+  "description": "Create initial UI designs for the application.",
+  "status": "In Review",
+  "priority": "Medium",
+  "deadline": "2024-11-12",
+  "tags": [
+    "UI",
+    "Design"
+  ],
+  "createdBy": "Alice",
+  "createdAt": {
+    "$date": "2024-11-02T11:30:00Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-02T01:23:57.708Z"
+  },
+  "assignee": "Charlie",
+  "history": [
+    {
+      "id": "2",
+      "title": "Design UI mockups",
+      "description": "Create initial UI designs for the application.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": "2024-11-12",
+      "tags": [
+        "UI"
+      ],
+      "createdBy": "Alice",
+      "createdAt": "2024-11-02T11:30:00Z",
+      "updatedAt": {
+        "$date": "2024-11-02T11:30:00Z"
+      },
+      "comments": [
+        {
+          "text": "Can we focus on mobile-first designs?",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T11:30:00Z"
+        },
+        {
+          "text": "Agreed! I'll start with wireframes.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-02T12:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Design UI mockups",
+      "description": "Create initial UI designs for the application.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": "2024-11-12",
+      "tags": [],
+      "createdBy": "Alice",
+      "createdAt": "2024-11-02T11:30:00Z",
+      "updatedAt": {
+        "$date": "2024-11-29T04:18:57.191Z"
+      },
+      "comments": [
+        {
+          "text": "Can we focus on mobile-first designs?",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T11:30:00Z"
+        },
+        {
+          "text": "Agreed! I'll start with wireframes.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-02T12:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Design UI mockups",
+      "description": "Create initial UI designs for the application.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": "2024-11-12",
+      "tags": [
+        "UI",
+        "Design"
+      ],
+      "createdBy": "Alice",
+      "createdAt": {
+        "$date": "2024-11-02T11:30:00Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-29T04:35:05.695Z"
+      },
+      "comments": [
+        {
+          "text": "Can we focus on mobile-first designs?",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T11:30:00Z"
+        },
+        {
+          "text": "Agreed! I'll start with wireframes.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-02T12:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Design UI mockups",
+      "description": "Create initial UI designs for the application.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": "2024-11-12",
+      "tags": [
+        "UI",
+        "Design"
+      ],
+      "createdBy": "Alice",
+      "createdAt": {
+        "$date": "2024-11-02T11:30:00Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-29T04:35:05.695Z"
+      },
+      "comments": [
+        {
+          "text": "Can we focus on mobile-first designs?",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T11:30:00Z"
+        },
+        {
+          "text": "Agreed! I'll start with wireframes.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-02T12:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Design UI mockups",
+      "description": "Create initial UI designs for the application.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-12",
+      "tags": [
+        "UI",
+        "Design"
+      ],
+      "createdBy": "Alice",
+      "createdAt": {
+        "$date": "2024-11-02T11:30:00Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-02T01:22:46.076Z"
+      },
+      "assignee": "Charlie",
+      "comments": [
+        {
+          "text": "Can we focus on mobile-first designs?",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T11:30:00Z"
+        },
+        {
+          "text": "Agreed! I'll start with wireframes.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-02T12:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Design UI mockups",
+      "description": "Create initial UI designs for the application.",
+      "status": "Backlog",
+      "priority": "Medium",
+      "deadline": "2024-11-12",
+      "tags": [
+        "UI",
+        "Design"
+      ],
+      "createdBy": "Alice",
+      "createdAt": {
+        "$date": "2024-11-02T11:30:00Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-02T01:23:35.186Z"
+      },
+      "assignee": "Charlie",
+      "comments": [
+        {
+          "text": "Can we focus on mobile-first designs?",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T11:30:00Z"
+        },
+        {
+          "text": "Agreed! I'll start with wireframes.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-02T12:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Design UI mockups",
+      "description": "Create initial UI designs for the application.",
+      "status": "In Review",
+      "priority": "Medium",
+      "deadline": "2024-11-12",
+      "tags": [
+        "UI",
+        "Design"
+      ],
+      "createdBy": "Alice",
+      "createdAt": {
+        "$date": "2024-11-02T11:30:00Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-02T01:23:57.708Z"
+      },
+      "assignee": "Charlie",
+      "comments": [
+        {
+          "text": "Can we focus on mobile-first designs?",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T11:30:00Z"
+        },
+        {
+          "text": "Agreed! I'll start with wireframes.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-02T12:45:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "Can we focus on mobile-first designs?",
+      "commentedBy": "Bob",
+      "timestamp": "2024-11-02T11:30:00Z"
+    },
+    {
+      "text": "Agreed! I'll start with wireframes.",
+      "commentedBy": "Charlie",
+      "timestamp": "2024-11-02T12:45:00Z"
+    }
+  ]
+},
+{
+  "id": "3",
+  "title": "Implement task API",
+  "description": "Develop API endpoints for task creation and retrieval.",
+  "status": "In Progress",
+  "priority": "High",
+  "deadline": "2024-11-15",
+  "tags": [
+    "backend",
+    "API"
+  ],
+  "createdBy": "Alice",
+  "createdAt": "2024-11-03T12:00:00Z",
+  "updatedAt": "2024-11-03T12:00:00Z",
+  "assignee": "Dave",
+  "history": [
+    {
+      "id": "3",
+      "title": "Implement task API",
+      "description": "Develop API endpoints for task creation and retrieval.",
+      "status": "In Progress",
+      "priority": "High",
+      "deadline": "2024-11-15",
+      "tags": [
+        "backend",
+        "API"
+      ],
+      "createdBy": "Alice",
+      "createdAt": {
+        "$date": "2024-11-03T12:00:00Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-03T12:00:00Z"
+      },
+      "assignee": "Dave",
+      "comments": [
+        {
+          "text": "Endpoint validation is still missing.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-04T09:00:00Z"
+        },
+        {
+          "text": "I'll finish that by tomorrow.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-04T10:15:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "Endpoint validation is still missing.",
+      "commentedBy": "Charlie",
+      "timestamp": "2024-11-04T09:00:00Z"
+    },
+    {
+      "text": "I'll finish that by tomorrow.",
+      "commentedBy": "Dave",
+      "timestamp": "2024-11-04T10:15:00Z"
+    }
+  ]
+},
+{
+  "id": "4",
+  "title": "Test database setup",
+  "description": "Ensure MongoDB is properly configured and accessible.",
+  "status": "To Do",
+  "priority": "Medium",
+  "deadline": "2024-11-11",
+  "tags": [
+    "database",
+    "setup"
+  ],
+  "createdBy": "Bob",
+  "createdAt": {
+    "$date": "2024-11-03T15:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-02T01:23:39.448Z"
+  },
+  "assignee": "Eve",
+  "history": [
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": "2024-11-03T15:00:00.000Z",
+      "updatedAt": {
+        "$date": "2024-11-03T15:00:00.000Z"
+      },
+      "assignee": "Eve",
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": null,
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:07:51.036Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": "2024-11-03T15:00:00Z",
+      "updatedAt": {
+        "$date": "2024-11-27T22:15:01.557Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:15:01.557Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:15:01.557Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:19:15.914Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:19:15.914Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:19:15.914Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:21:07.893Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:21:07.893Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:21:07.893Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:28:48.389Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:28:48.389Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:29:47.191Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:29:47.191Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:29:47.191Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:32:43.845Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:29:47.191Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:32:43.845Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:32:43.845Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:33:46.233Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:29:47.191Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:32:43.845Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:33:46.233Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:33:46.233Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:36:08.256Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:29:47.191Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:32:43.845Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:33:46.233Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:36:08.256Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:36:08.256Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:37:30.765Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:29:47.191Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:32:43.845Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:33:46.233Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:36:08.256Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:37:30.765Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:37:30.765Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:38:23.810Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:29:47.191Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:32:43.845Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:33:46.233Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:36:08.256Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:37:30.765Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:38:23.809Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:38:23.810Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:39:33.954Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:28:48.389Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:29:47.191Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:32:43.845Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:33:46.233Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:36:08.256Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:37:30.765Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:38:23.809Z"
+          }
+        },
+        {
+          "text": "That's Done!!!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:39:33.954Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:39:33.954Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-27T22:41:43.147Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:41:43.147Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Review",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-27T22:41:43.147Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-28T23:31:19.619Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:41:43.147Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-28T23:31:19.619Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-28T23:38:26.613Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:41:43.147Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "Future Work",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-28T23:38:26.613Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-28T23:40:55.752Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:41:43.147Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-28T23:40:55.752Z"
+      },
+      "updatedAt": {
+        "$date": "2024-11-28T23:41:30.904Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:41:43.147Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-03T15:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-01T18:43:17.856Z"
+      },
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:41:43.147Z"
+          }
+        },
+        {
+          "text": "Checking history",
+          "commentedBy": "Khurram",
+          "timestamp": {
+            "$date": "2024-12-01T18:43:17.856Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test database setup",
+      "description": "Ensure MongoDB is properly configured and accessible.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": "2024-11-11",
+      "tags": [
+        "database",
+        "setup"
+      ],
+      "createdBy": "Bob",
+      "createdAt": {
+        "$date": "2024-11-03T15:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-02T01:23:39.448Z"
+      },
+      "assignee": "Eve",
+      "comments": [
+        {
+          "text": "The database is connected, but authentication is not enabled.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-04T09:45:00Z"
+        },
+        {
+          "text": "Enable authentication and set up environment variables.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-04T11:30:00Z"
+        },
+        {
+          "text": "That's Done!",
+          "commentedBy": "Ahmed",
+          "timestamp": {
+            "$date": "2024-11-27T22:41:43.147Z"
+          }
+        },
+        {
+          "text": "Checking history",
+          "commentedBy": "Khurram",
+          "timestamp": {
+            "$date": "2024-12-01T18:43:17.856Z"
+          }
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "The database is connected, but authentication is not enabled.",
+      "commentedBy": "Eve",
+      "timestamp": "2024-11-04T09:45:00Z"
+    },
+    {
+      "text": "Enable authentication and set up environment variables.",
+      "commentedBy": "Bob",
+      "timestamp": "2024-11-04T11:30:00Z"
+    },
+    {
+      "text": "That's Done!",
+      "commentedBy": "Ahmed",
+      "timestamp": {
+        "$date": "2024-11-27T22:41:43.147Z"
+      }
+    },
+    {
+      "text": "Checking history",
+      "commentedBy": "Khurram",
+      "timestamp": {
+        "$date": "2024-12-01T18:43:17.856Z"
+      }
+    }
+  ]
+},
+{
+  "id": "5",
+  "title": "Research third-party libraries",
+  "description": "Identify useful libraries for the project.",
+  "status": "Backlog",
+  "priority": "Low",
+  "deadline": null,
+  "tags": [
+    "research",
+    "tools"
+  ],
+  "createdBy": "Alice",
+  "createdAt": "2024-11-01T16:00:00Z",
+  "updatedAt": "2024-11-01T16:00:00Z",
+  "assignee": "",
+  "history": [{
+    "id": "5",
+    "title": "Research third-party libraries",
+    "description": "Identify useful libraries for the project.",
+    "status": "Backlog",
+    "priority": "Low",
+    "deadline": null,
+    "tags": [
+      "research",
+      "tools"
+    ],
+    "createdBy": "Alice",
+    "createdAt": "2024-11-01T16:00:00Z",
+    "updatedAt": "2024-11-01T16:00:00Z",
+    "assignee": "",
+    "comments": [
+      {
+        "text": "Check out the 'Lodash' and 'Moment.js' libraries.",
+        "commentedBy": "Charlie",
+        "timestamp": "2024-11-02T10:00:00Z"
+      },
+      {
+        "text": "Moment.js is deprecated; let's use Day.js instead.",
+        "commentedBy": "Eve",
+        "timestamp": "2024-11-02T10:45:00Z"
+      }]
+  }],
+  "comments": [
+    {
+      "text": "Check out the 'Lodash' and 'Moment.js' libraries.",
+      "commentedBy": "Charlie",
+      "timestamp": "2024-11-02T10:00:00Z"
+    },
+    {
+      "text": "Moment.js is deprecated; let's use Day.js instead.",
+      "commentedBy": "Eve",
+      "timestamp": "2024-11-02T10:45:00Z"
+    }
+  ]
+},
+{
+  "id": "6",
+  "title": "Explore deployment strategies",
+  "description": "Look into server hosting and CI/CD pipelines.",
+  "status": "In Progress",
+  "priority": "Medium",
+  "deadline": null,
+  "tags": [
+    "deployment",
+    "strategy"
+  ],
+  "createdBy": "Charlie",
+  "createdAt": "2024-11-02T13:00:00Z",
+  "updatedAt": {
+    "$date": "2024-12-02T01:52:13.245Z"
+  },
+  "assignee": "",
+  "history": [
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-11-02T13:00:00Z"
+      },
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "Backlog",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-11-29T00:08:07.041Z"
+      },
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-01T22:00:14.499Z"
+      },
+      "assignee": "",
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "Backlog",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-01T22:01:15.708Z"
+      },
+      "assignee": "",
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T01:22:55.927Z"
+      },
+      "assignee": "",
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "Backlog",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T01:23:43.803Z"
+      },
+      "assignee": "",
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T01:23:55.407Z"
+      },
+      "assignee": "",
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T01:52:06.609Z"
+      },
+      "assignee": "",
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Explore deployment strategies",
+      "description": "Look into server hosting and CI/CD pipelines.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "deadline": null,
+      "tags": [
+        "deployment",
+        "strategy"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-11-02T13:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T01:52:13.245Z"
+      },
+      "assignee": "",
+      "comments": [
+        {
+          "text": "AWS and Netlify could be good options.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-02T14:00:00Z"
+        },
+        {
+          "text": "Let's also consider GitHub Actions for CI/CD.",
+          "commentedBy": "Dave",
+          "timestamp": "2024-11-02T15:30:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "AWS and Netlify could be good options.",
+      "commentedBy": "Bob",
+      "timestamp": "2024-11-02T14:00:00Z"
+    },
+    {
+      "text": "Let's also consider GitHub Actions for CI/CD.",
+      "commentedBy": "Dave",
+      "timestamp": "2024-11-02T15:30:00Z"
+    }
+  ]
+},
+{
+  "id": "7",
+  "title": "Review API documentation",
+  "description": "Check and provide feedback on API docs.",
+  "status": "To Do",
+  "priority": "Medium",
+  "deadline": "2024-11-07",
+  "tags": [
+    "review",
+    "documentation"
+  ],
+  "createdBy": "Dave",
+  "createdAt": "2024-11-04T08:00:00Z",
+  "updatedAt": {
+    "$date": "2024-12-02T01:37:10.341Z"
+  },
+  "assignee": "Bob",
+  "history": [
+    {
+      "id": "7",
+      "title": "Review API documentation",
+      "description": "Check and provide feedback on API docs.",
+      "status": "To Do",
+      "priority": "Medium",
+      "deadline": "2024-11-07",
+      "tags": [
+        "review",
+        "documentation"
+      ],
+      "createdBy": "Dave",
+      "createdAt": "2024-11-04T08:00:00Z",
+      "updatedAt": {
+        "$date": "2024-11-04T08:00:00Z"
+      },
+      "assignee": "Bob",
+      "comments": [
+        {
+          "text": "The examples in the documentation are incomplete.",
+          "commentedBy": "Alice",
+          "timestamp": "2024-11-05T13:00:00Z"
+        },
+        {
+          "text": "I'll add more examples for each endpoint.",
+          "commentedBy": "Bob",
+          "timestamp": "2024-11-05T14:30:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "The examples in the documentation are incomplete.",
+      "commentedBy": "Alice",
+      "timestamp": "2024-11-05T13:00:00Z"
+    },
+    {
+      "text": "I'll add more examples for each endpoint.",
+      "commentedBy": "Bob",
+      "timestamp": "2024-11-05T14:30:00Z"
+    }
+  ]
+},
+{
+  "id": "8",
+  "title": "Validate form validation logic",
+  "description": "Test and ensure robust form validation in the UI.",
+  "status": "Backlog",
+  "priority": "High",
+  "deadline": "2024-11-09",
+  "tags": [
+    "testing",
+    "frontend"
+  ],
+  "createdBy": "Eve",
+  "createdAt": "2024-11-03T14:00:00Z",
+  "updatedAt": {
+    "$date": "2024-12-02T01:24:08.078Z"
+  },
+  "assignee": "Charlie",
+  "history": [
+    {
+      "id": "8",
+      "title": "Validate form validation logic",
+      "description": "Test and ensure robust form validation in the UI.",
+      "status": "Backlog",
+      "priority": "High",
+      "deadline": "2024-11-09",
+      "tags": [
+        "testing",
+        "frontend"
+      ],
+      "createdBy": "Eve",
+      "createdAt": "2024-11-03T14:00:00Z",
+      "updatedAt": {
+        "$date": "2024-11-03T14:00:00Z"
+      },
+      "assignee": "Charlie",
+      "comments": [
+        {
+          "text": "Field validation works for the title but fails for the description.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-04T10:00:00Z"
+        },
+        {
+          "text": "I'll fix that in the next push.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-05T09:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Validate form validation logic",
+      "description": "Test and ensure robust form validation in the UI.",
+      "status": "In Progress",
+      "priority": "High",
+      "deadline": "2024-11-09",
+      "tags": [
+        "testing",
+        "frontend"
+      ],
+      "createdBy": "Eve",
+      "createdAt": "2024-11-03T14:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T01:24:03.603Z"
+      },
+      "assignee": "Charlie",
+      "comments": [
+        {
+          "text": "Field validation works for the title but fails for the description.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-04T10:00:00Z"
+        },
+        {
+          "text": "I'll fix that in the next push.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-05T09:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Validate form validation logic",
+      "description": "Test and ensure robust form validation in the UI.",
+      "status": "Backlog",
+      "priority": "High",
+      "deadline": "2024-11-09",
+      "tags": [
+        "testing",
+        "frontend"
+      ],
+      "createdBy": "Eve",
+      "createdAt": "2024-11-03T14:00:00Z",
+      "updatedAt": {
+        "$date": "2024-12-02T01:24:08.078Z"
+      },
+      "assignee": "Charlie",
+      "comments": [
+        {
+          "text": "Field validation works for the title but fails for the description.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-11-04T10:00:00Z"
+        },
+        {
+          "text": "I'll fix that in the next push.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-11-05T09:45:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "Field validation works for the title but fails for the description.",
+      "commentedBy": "Charlie",
+      "timestamp": "2024-11-04T10:00:00Z"
+    },
+    {
+      "text": "I'll fix that in the next push.",
+      "commentedBy": "Eve",
+      "timestamp": "2024-11-05T09:45:00Z"
+    }
+  ]
+},
+{
+  "id": "9",
+  "title": "Setup project repository",
+  "description": "Create and initialize the project repository on GitHub.",
+  "status": "Done",
+  "priority": "High",
+  "deadline": "2024-10-31",
+  "tags": [
+    "repository",
+    "setup"
+  ],
+  "createdBy": "Alice",
+  "createdAt": "2024-10-30T09:00:00Z",
+  "updatedAt": "2024-10-30T09:00:00Z",
+  "assignee": "Bob",
+  "history": [
+    {
+      "id": "9",
+      "title": "Setup project repository",
+      "description": "Create and initialize the project repository on GitHub.",
+      "status": "Done",
+      "priority": "High",
+      "deadline": "2024-10-31",
+      "tags": [
+        "repository",
+        "setup"
+      ],
+      "createdBy": "Alice",
+      "createdAt": "2024-10-30T09:00:00Z",
+      "updatedAt": "2024-10-30T09:00:00Z",
+      "assignee": "Bob",
+      "comments": [
+        {
+          "text": "The repository is set up with the main branch protected.",
+          "commentedBy": "Charlie",
+          "timestamp": "2024-10-30T10:15:00Z"
+        },
+        {
+          "text": "I added a README template to the repository.",
+          "commentedBy": "Alice",
+          "timestamp": "2024-10-31T09:45:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "The repository is set up with the main branch protected.",
+      "commentedBy": "Charlie",
+      "timestamp": "2024-10-30T10:15:00Z"
+    },
+    {
+      "text": "I added a README template to the repository.",
+      "commentedBy": "Alice",
+      "timestamp": "2024-10-31T09:45:00Z"
+    }
+  ]
+},
+{
+  "id": "10",
+  "title": "Write README file",
+  "description": "Prepare the initial README for the repository.",
+  "status": "Done",
+  "priority": "Medium",
+  "deadline": "2024-12-01T12:00",
+  "tags": [
+    "documentation",
+    "README"
+  ],
+  "createdBy": "Charlie",
+  "createdAt": "2024-10-30T15:00:00Z",
+  "updatedAt": {
+    "$date": "2024-11-30T01:50:38.696Z"
+  },
+  "assignee": "Eve",
+  "history": [
+    {
+      "id": "10",
+      "title": "Write README file",
+      "description": "Prepare the initial README for the repository.",
+      "status": "Done",
+      "priority": "Medium",
+      "deadline": "2024-11-01",
+      "tags": [
+        "documentation",
+        "README"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-10-30T15:00:00Z",
+      "updatedAt": {
+        "$date": "2024-10-30T15:00:00Z"
+      },
+      "assignee": "Eve",
+      "comments": [
+        {
+          "text": "Great meeting! We have a clear idea of our next steps.",
+          "commentedBy": "Alice",
+          "timestamp": "2024-10-29T13:00:00Z"
+        },
+        {
+          "text": "I’ve uploaded the meeting notes to the shared drive.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-10-29T15:30:00Z"
+        },
+        {
+          "text": "",
+          "commentedBy": "",
+          "timestamp": {
+            "$date": "2024-11-28T01:10:20.504Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Write README file",
+      "description": "Prepare the initial README for the repository.",
+      "status": "Done",
+      "priority": "Medium",
+      "deadline": "2024-12-01T12:00",
+      "tags": [
+        "documentation",
+        "README"
+      ],
+      "createdBy": "Charlie",
+      "createdAt": "2024-10-30T15:00:00Z",
+      "updatedAt": {
+        "$date": "2024-11-30T01:50:38.696Z"
+      },
+      "assignee": "Eve",
+      "comments": [
+        {
+          "text": "Great meeting! We have a clear idea of our next steps.",
+          "commentedBy": "Alice",
+          "timestamp": "2024-10-29T13:00:00Z"
+        },
+        {
+          "text": "I’ve uploaded the meeting notes to the shared drive.",
+          "commentedBy": "Eve",
+          "timestamp": "2024-10-29T15:30:00Z"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "text": "Great meeting! We have a clear idea of our next steps.",
+      "commentedBy": "Alice",
+      "timestamp": "2024-10-29T13:00:00Z"
+    },
+    {
+      "text": "I’ve uploaded the meeting notes to the shared drive.",
+      "commentedBy": "Eve",
+      "timestamp": "2024-10-29T15:30:00Z"
+    }
+  ]
+}]

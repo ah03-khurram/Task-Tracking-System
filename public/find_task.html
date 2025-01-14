@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        var color_list = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+                        '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+                        '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+                        '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+                        '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+                        '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+                        '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+                        '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+                        '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+                        '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+        var colorUsed = [];
+        var remove_tag = [];
+        var new_tags = [];
+
+        function task_maker(task_info, past_history = false) {
+            document.getElementById("history-value").innerHTML = `${new Date(task_info.updatedAt).toLocaleTimeString()} on ${new Date(task_info.updatedAt).toDateString()}`;
+            if (!past_history) {
+                document.getElementById("history-date").min = task_info.createdAt.split("Z")[0];
+                document.getElementById("history-date").max = task_info.updatedAt.split("Z")[0];
+            }
+            document.querySelector(".task-title").innerHTML = `${task_info.title}`;
+            document.querySelector(".status-text-edit").getElementsByTagName("p")[0].innerHTML = task_info.status;
+            document.querySelector(".task-creation-date").innerHTML = `<strong>Created: </strong> <em>${new Date(task_info.createdAt).toLocaleTimeString()}</em> on <em>${new Date(task_info.createdAt).toDateString()}</em>`;
+            document.querySelector(".task-priority").innerHTML = `<strong>Priority Level: </strong> <em>${task_info.priority}</em>`;
+            document.querySelector(".task-description").innerHTML = `<strong>Detail: </strong> <em>${task_info.description}</em>`;
+            if (task_info.deadline) {
+                document.querySelector(".task-deadline").innerHTML = `<strong>Deadline: </strong> <em>${new Date(task_info.deadline).toLocaleTimeString()}</em> on <em>${new Date(task_info.deadline).toDateString()}</em>`;;
+            }
+            else {
+                document.querySelector(".task-deadline").innerHTML = `<strong>Deadline: </strong> <em>Not set</em>`;
+            }
+
+            if (task_info.assignee === "") {
+                task_info.assignee = "Not assigned";
+            }
+            document.querySelector(".task-assignee").innerHTML = `<strong>Assignee: </strong> <em>${task_info.assignee}</em>`;
+
+            if (task_info.tags && task_info.tags.length > 0) {
+                for (let tag of task_info.tags) {
+                    tag_maker(tag);
+                }
+            }
+            else if (task_info.tags.length === 0) {
+                document.querySelector(".tags-placeholder").style.display = "block";
+            }
+            document.querySelector(".flex-task-details").style.display = "flex";
+            document.querySelector(".task-history-handler").style.display = "flex";
+        }
+
+        function comment_maker(task_info) {
+            if (task_info.comments.length > 0){
+                for (let comment of task_info.comments){
+                    let commentTemplate = document.getElementById("taskComment");
+                    let commentElement = commentTemplate.content.cloneNode(true);
+                    commentElement.querySelector(".comment-text").innerHTML = `<p>${comment.text}</p>`;
+                    commentElement.querySelector(".comment-commentedBy").innerHTML = `<em>${comment.commentedBy}</em>`;
+                    commentElement.querySelector(".comment-timestamp").innerHTML = `<small><em>${new Date(comment.timestamp).toLocaleTimeString()}</em> on <em>${new Date(comment.timestamp).toDateString()}</em></small>`;
+                    document.querySelector(".comment-list").appendChild(commentElement);
+                }
+            }
+            document.querySelector(".flex-container-comments").style.display = "flex";
+        }
+
+        function tag_maker(tag, cross_visible = false) {
+            let tagTemplate = document.getElementById("task-tag");
+            let tagElement = tagTemplate.content.cloneNode(true);
+            tagElement.querySelector(".tag-name").innerHTML = tag;
+            if (colorUsed.length > color_list.length) {
+                colorUsed = [];
+            }
+            else {
+
+                let colorIndex = Math.floor(Math.random() * color_list.length);
+                while (colorUsed.includes(colorIndex)) {
+                    colorIndex = Math.floor(Math.random() * color_list.length);
+                }
+                colorUsed.push(colorIndex);
+                tagElement.querySelector(".tag-text-cross").style.backgroundColor = color_list[colorIndex];
+            }
+
+            if (cross_visible) {
+                tagElement.querySelector(".tag-cross").style.display = "block";
+            }
+            document.querySelector(".tags-placeholder").style.display = "none";
+            document.querySelector(".task-tags").appendChild(tagElement);
+
+        }
+
+        function removeTag(element) {
+            var tagNameElement = element.previousElementSibling;
+            if (tagNameElement && tagNameElement.classList.contains("tag-name")) {
+                var tagName = tagNameElement.textContent;
+                if (new_tags.includes(tagName)) {
+                    new_tags = new_tags.filter(tag => tag !== tagName);
+                    console.log("New tag removed:", tagName);
+                    console.log("Updated new_tags array:", new_tags);
+                } else {
+                    remove_tag.push(tagName);
+                }
+                
+                console.log("Tag removed:", tagName);
+                console.log("Updated remove_tag array:", remove_tag);
+
+                var parentElement = element.parentElement;
+                if (parentElement && parentElement.classList.contains("tag-text-cross")) {
+                    parentElement.remove();
+                    if (document.querySelector(".task-tags").childElementCount === 1) {
+                        document.querySelector(".tags-placeholder").style.display = "block";
+                    }
+                } else {
+                    console.error("Parent element not found or does not have the correct class");
+                }
+            } else {
+                console.error("Tag name element not found");
+            }
+        }
+
+        function reset_enteries() {
+            document.getElementById("find-status").style.display = "none";
+            document.querySelector(".task-history-handler").style.display = "none";
+            document.querySelector(".history-access-section").style.display = "none";
+            document.getElementById("retrieve-history-btn").removeAttribute("style");
+            document.getElementById("current-status-btn").style.display = "none";
+            document.querySelector(".task-title").innerHTML = "";
+            document.querySelector(".flex-task-details").style.display = "none";
+            document.querySelector(".flex-container-comments").style.display = "none";
+            document.querySelector(".comment-list").innerHTML = "";
+            document.querySelector(".comment-form").style.display = "none";
+            document.getElementById("click-to-add-comment").style.display = "block";
+            document.getElementById("comment-by").value = "";
+            document.getElementById("comment-text").value = "";
+            document.querySelector(".task-priority").innerHTML = "";
+            document.querySelector(".task-tags").innerHTML = `<h3 class="tags-placeholder" style="display: none;">Tags list</h3>`;
+            document.getElementById("btn-edit-task").removeAttribute("style");
+            document.getElementById("btn-edit-task-cancel").style.display = "none";
+            edit_mode_switch();
+        }
+
+        function tags_list_reset(cancel = true) {
+
+            if (cancel) {
+                for (let tag of remove_tag) {
+                    tag_maker(tag);
+                }
+                
+                all_tags = document.querySelectorAll(".tag-name");
+                for (let tag of all_tags) {
+                    if (new_tags.includes(tag.textContent)) {
+                        tag.parentElement.remove();
+                    }
+                }
+                if (document.querySelector(".task-tags").childElementCount === 1) {
+                    document.querySelector(".tags-placeholder").style.display = "block";
+                }
+            }
+            remove_tag = [];
+            new_tags = [];
+
+            document.getElementById("btn-edit-tags").removeAttribute("style");
+            document.querySelectorAll(".tag-cross").forEach(cross => {
+                cross.style.display = "none";
+            });
+            document.getElementById("new-tag").value = "";
+            document.querySelector(".new-tag").style.display = "none";
+            document.querySelector(".tags-btn").style.display = "none";
+            document.querySelector(".task-tags-handler").removeAttribute("style");
+        }
+
+        function edit_mode_switch(edit = false) {
+            if (edit) {
+                document.getElementById("btn-edit-title").removeAttribute("style");
+                document.getElementById("btn-edit-status").removeAttribute("style");
+                document.getElementById("btn-edit-tags").removeAttribute("style");
+                document.getElementById("btn-edit-priority").removeAttribute("style");
+                document.getElementById("btn-edit-description").removeAttribute("style");
+                document.getElementById("btn-edit-deadline").removeAttribute("style");
+                document.getElementById("btn-edit-assignee").removeAttribute("style");
+            } else {
+                document.getElementById("btn-edit-title").style.display = "none";
+                document.getElementById("btn-edit-status").style.display = "none";
+
+                tags_list_reset();
+
+                document.getElementById("btn-edit-tags").style.display = "none";
+                document.getElementById("btn-edit-priority").style.display = "none";
+                document.getElementById("btn-edit-description").style.display = "none";
+                document.getElementById("btn-edit-deadline").style.display = "none";
+                document.getElementById("btn-edit-assignee").style.display = "none";
+
+                document.querySelector(".edit-title-section").style.display = "none";
+                document.querySelector(".title-edit-button").style.display = "none";
+                document.querySelector(".task-title-edit-mode").removeAttribute("style");
+                document.getElementById("title-text").value = "";
+
+                document.getElementById("btn-edit-status").style.display = "none";
+                document.getElementById("btn-cancel-status-edit").style.display = "none"
+                document.getElementById("btn-update-status").style.display = "none";
+                document.querySelector(".edit-status").removeAttribute("style");
+                document.querySelector(".state-change-div").style.display = "none";
+                document.querySelector(".new-user-status").style.display = "none";
+                document.getElementById("add-new-status").innerHTML = "Custom State";
+                document.getElementById("new-status").value = "";
+                document.getElementById("select-task-status").value = "";
+
+                document.getElementById("btn-edit-priority").style.display = "none";
+                document.querySelector(".edit-priority").style.display = "none";
+                document.querySelector(".task-priority-handler").removeAttribute("style");
+                document.getElementById("priority-level").value = "";
+
+                document.getElementById("btn-edit-description").style.display = "none";
+                document.querySelector(".edit-description").style.display = "none";
+                document.querySelector(".task-description-handler").removeAttribute("style");
+                document.getElementById("description-text").value = "";
+
+                document.getElementById("btn-edit-deadline").style.display = "none";
+                document.querySelector(".edit-deadline").style.display = "none";
+                document.querySelector(".task-deadline-handler").removeAttribute("style");
+                document.getElementById("deadline-date").value = "";
+
+                document.getElementById("btn-edit-assignee").style.display = "none";
+                document.querySelector(".edit-assignee").style.display = "none";
+                document.querySelector(".task-assignee-handler").removeAttribute("style");
+                document.getElementById("assignee-name").value = "";
+            }
+        }
+
+        function block_edit_and_commenting(block = true) {
+            if (block) {
+                document.getElementById("btn-edit-task").style.display = "none";
+                document.getElementById("btn-edit-task-cancel").style.display = "none";
+                document.getElementById("btn-edit-title").style.display = "none";
+                document.getElementById("btn-edit-status").style.display = "none";
+                document.getElementById("btn-edit-tags").style.display = "none";
+                document.getElementById("btn-edit-priority").style.display = "none";
+                document.getElementById("btn-edit-description").style.display = "none";
+                document.getElementById("btn-edit-deadline").style.display = "none";
+                document.getElementById("btn-edit-assignee").style.display = "none";
+                document.getElementById("click-to-add-comment").style.display = "none";
+            } else {
+                document.getElementById("btn-edit-task").removeAttribute("style");
+                document.getElementById("btn-edit-title").removeAttribute("style");
+                document.getElementById("btn-edit-status").removeAttribute("style");
+                document.getElementById("btn-edit-tags").removeAttribute("style");
+                document.getElementById("btn-edit-priority").removeAttribute("style");
+                document.getElementById("btn-edit-description").removeAttribute("style");
+                document.getElementById("btn-edit-deadline").removeAttribute("style");
+                document.getElementById("btn-edit-assignee").removeAttribute("style");
+                document.getElementById("click-to-add-comment").removeAttribute("style");
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+
+            window.addEventListener("load", (event) => {
+                edit_mode_switch();
+                const urlParams = new URLSearchParams(window.location.search);
+                const task_id = urlParams.get('id');
+                if (task_id) {
+                    fetch(`/task?id=${task_id}`).then(response => {
+                        if (response.status === 200) {
+                            response.json().then(reply => {
+                                document.getElementById("find-task-search").value = task_id;
+                                task_maker(reply.task);
+                                comment_maker(reply.task);
+                            });
+                        } else if (response.status === 404) {
+                            response.json().then(reply => {
+                                document.getElementById("task-found-status").value = reply.message;
+                                document.getElementById("find-status").style.display = "flex";
+                            });
+                        }
+                    });
+                }
+            });
+
+            document.getElementById("btn-find-task").addEventListener("click", (event) => {
+                event.preventDefault();
+                if (document.getElementById("find-task-search").value === "") {
+                    document.getElementById("task-found-status").value = "Please enter a task ID";
+                    document.getElementById("find-status").style.display = "flex";
+                    return;
+                }
+
+                let task_id = document.getElementById("find-task-search").value;
+                reset_enteries();
+                fetch(`/task?id=${task_id}`).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            task_maker(reply.task);
+                            comment_maker(reply.task);
+                        });
+                    } 
+                    
+                    else if (response.status === 404) {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+
+                    }
+                });
+            });
+
+            document.getElementById("click-to-add-comment").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.querySelector(".comment-form").style.display = "flex";
+                document.getElementById("click-to-add-comment").style.display = "none";
+            });
+
+            document.getElementById("btn-comment").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("comment-status").style.display = "none";
+                let comment = {
+                    commentedBy: document.getElementById("comment-by").value,
+                    comment: document.getElementById("comment-text").value
+                };
+                let task_id = document.getElementById("find-task-search").value;
+                let options = {
+                    method: "POST",
+                    body: JSON.stringify(comment),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task/Comment?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            let commentTemplate = document.getElementById("taskComment");
+                            let commentElement = commentTemplate.content.cloneNode(true);
+                            commentElement.querySelector(".comment-text").innerHTML = `<p>${reply.comment.text}</p>`;
+                            commentElement.querySelector(".comment-commentedBy").innerHTML = `<em>${reply.comment.commentedBy}</em>`;
+                            commentElement.querySelector(".comment-timestamp").innerHTML = `<small><em>${new Date(reply.comment.timestamp).toLocaleTimeString()}</em> on <em>${new Date(reply.comment.timestamp).toDateString()}</em></small>`;
+                            document.querySelector(".comment-list").appendChild(commentElement);
+                            document.getElementById("comment-by").value = "";
+                            document.getElementById("comment-text").value = "";
+                            document.querySelector(".comment-form").style.display = "none";
+                            document.getElementById("click-to-add-comment").style.display = "block";
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("comment-send-status").value = reply.message;
+                            document.getElementById("comment-status").style.display = "flex";
+                        });
+                    }
+                });
+            });
+            
+            document.getElementById("btn-cancel").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("comment-by").value = "";
+                document.getElementById("comment-text").value = "";
+                document.getElementById("comment-status").style.display = "none";
+                document.querySelector(".comment-form").style.display = "none";
+                document.getElementById("click-to-add-comment").style.display = "block";
+            });
+
+            document.getElementById("btn-edit-status").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-status").style.display = "none";
+                document.getElementById("btn-cancel-status-edit").style.display = "block";
+                document.getElementById("btn-update-status").style.display = "block";
+                document.querySelector(".edit-status").style.display = "flex";
+                document.querySelector(".state-change-div").style.display = "flex";
+            });
+
+            document.getElementById("btn-cancel-status-edit").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-status").removeAttribute("style");
+                document.getElementById("btn-cancel-status-edit").style.display = "none";
+                document.getElementById("btn-update-status").style.display = "none";
+                document.querySelector(".edit-status").removeAttribute("style");
+                document.querySelector(".state-change-div").style.display = "none";
+                document.querySelector(".new-user-status").style.display = "none";
+            });
+
+            document.getElementById("add-new-status").addEventListener("click", (event) => {
+                event.preventDefault();
+                let newStatus = document.querySelector(".new-user-status");
+                if (newStatus.style.display === "none") {
+                    newStatus.style.display = "flex";
+                    document.getElementById("add-new-status").innerHTML = "Cancel";
+                    document.getElementById("btn-update-status").style.display = "none";
+                } else {
+                    newStatus.style.display = "none";
+                    document.getElementById("add-new-status").innerHTML = "Custom State";
+                    document.getElementById("btn-update-status").removeAttribute("style");
+                }
+            });
+
+            document.getElementById("btn-add-status").addEventListener("click", (event) => {
+                event.preventDefault();
+                let newStatus = document.getElementById("new-status").value;
+                if (newStatus === "") {
+                    document.querySelector(".new-user-status").style.display = "none";
+                    document.getElementById("add-new-status").innerHTML = "Custom State";
+                    document.getElementById("btn-update-status").removeAttribute("style");
+                }
+                else {
+                    let select = document.getElementById("select-task-status");
+                    let option = document.createElement("option");
+                    option.value = newStatus;
+                    option.text = newStatus;
+                    select.add(option, select[select.length]);
+                    document.getElementById("new-status").value = newStatus;
+                    document.querySelector(".new-user-status").style.display = "none";
+                    document.getElementById("add-new-status").innerHTML = "Custom State";
+                    document.getElementById("btn-update-status").removeAttribute("style");
+                    select.value = newStatus;
+                }
+            });
+
+            document.getElementById("btn-update-status").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                let status = document.getElementById("select-task-status").value;
+                if (status === "") {
+                    return;
+                }
+
+                document.getElementById("btn-edit-status").removeAttribute("style");
+                document.getElementById("btn-cancel-status-edit").style.display = "none";
+                document.getElementById("btn-update-status").style.display = "none";
+                document.querySelector(".edit-status").removeAttribute("style");
+                document.querySelector(".state-change-div").style.display = "none";
+                let options = {
+                    method: "PUT",
+                    body: JSON.stringify({status: status}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            document.querySelector(".status-text-edit").getElementsByTagName("p")[0].innerHTML = reply.task.status;
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+                });
+            });
+
+            document.getElementById("btn-edit-tags").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-tags").style.visibility = "hidden";
+                document.querySelectorAll(".tag-cross").forEach(cross => {
+                    cross.style.display = "block";
+                });
+                document.querySelector(".new-tag").style.display = "flex";
+                document.querySelector(".tags-btn").style.display = "flex";
+                document.querySelector(".task-tags-handler").style.backgroundColor = "#704c1f";
+            });
+
+            document.getElementById("btn-save-tags-change").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                if (remove_tag.length > 0) {
+                    let options = {
+                        method: "DELETE",
+                        body: JSON.stringify({tags: remove_tag}),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    };
+                    fetch(`/task/Tag?id=${task_id}`, options).then(response => {
+                        if (response.status === 200) {
+                            response.json().then(reply => {
+                                console.log(reply.message);
+                                document.querySelector(".task-tags").innerHTML = `<h3 class="tags-placeholder" style="display: none;">Tags list</h3>`;
+                                for (let tag of reply.tags) {
+                                    tag_maker(tag);
+                                }
+                                if (reply.tags.length === 0) {
+                                    document.querySelector(".tags-placeholder").style.display = "block";
+                                }
+                            });
+                        } 
+                        else {
+                            response.json().then(reply => {
+                                console.log(reply.message);
+                            });
+                        }
+                    });
+                }
+
+                if (new_tags.length > 0) {
+                    let options = {
+                        method: "POST",
+                        body: JSON.stringify({tags: new_tags}),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    };
+                    fetch(`/task/tag?id=${task_id}`, options).then(response => {
+                        if (response.status === 200) {
+                            response.json().then(reply => {
+                                document.querySelector(".task-tags").innerHTML = `<h3 class="tags-placeholder" style="display: none;">Tags list</h3>`;
+                                for (let tag of reply.tags) {
+                                    tag_maker(tag);
+                                }
+                                if (reply.tags.length === 0) {
+                                    document.querySelector(".tags-placeholder").style.display = "block";
+                                }
+                            });
+                        } 
+                        else {
+                            response.json().then(reply => {
+                                console.log(reply.message);
+                            });
+                        }
+                    });
+                }
+
+                tags_list_reset(false);
+            });
+
+            document.getElementById("btn-cancel-tags").addEventListener("click", (event) => {
+                event.preventDefault();
+                tags_list_reset();
+            });
+
+            document.getElementById("btn-add-tag").addEventListener("click", (event) => {
+                event.preventDefault();
+                let newTag = document.getElementById("new-tag").value;
+                if (newTag === "") {
+                    return;
+                }
+                tag_maker(newTag, true);
+
+                if (remove_tag.includes(newTag)) {
+                    remove_tag = remove_tag.filter(tag => tag !== newTag);
+                    console.log("Tag removed:", newTag);
+                    console.log("Updated remove_tag array:", remove_tag);
+                }
+                else {
+                    new_tags.push(newTag);
+                    console.log("New tag added:", newTag);
+                    console.log("Updated new_tags array:", new_tags);
+                }
+                document.getElementById("new-tag").value = "";
+            });
+
+            document.getElementById("btn-edit-priority").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-priority").style.display = "none";
+                document.querySelector(".edit-priority").style.display = "flex";
+                document.querySelector(".task-priority-handler").style.backgroundColor = "#5d0606";
+            });
+
+            document.getElementById("priority-edit-cancel-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-priority").removeAttribute("style");
+                document.querySelector(".edit-priority").style.display = "none";
+                document.querySelector(".task-priority-handler").removeAttribute("style");
+            });
+
+            document.getElementById("priority-edit-update-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                let priority = document.getElementById("priority-level").value;
+                if (priority === "") {
+                    return;
+                }
+                let options = {
+                    method: "PUT",
+                    body: JSON.stringify({priority: priority}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task/priority?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            document.querySelector(".task-priority").innerHTML = `<strong>Priority Level: </strong> <em>${reply.task.priority}</em>`;
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+                });
+                document.getElementById("btn-edit-priority").removeAttribute("style");
+                document.querySelector(".edit-priority").style.display = "none";
+                document.querySelector(".task-priority-handler").removeAttribute("style");
+            });
+
+            document.getElementById("btn-edit-description").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-description").style.display = "none";
+                document.querySelector(".edit-description").style.display = "flex";
+                document.querySelector(".task-description-handler").style.backgroundColor = "#5d0606";
+            });
+
+            document.getElementById("description-edit-cancel-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-description").removeAttribute("style");
+                document.querySelector(".edit-description").style.display = "none";
+                document.querySelector(".task-description-handler").removeAttribute("style");
+                document.getElementById("description-text").value = "";
+            });
+
+            document.getElementById("description-edit-update-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                let description = document.getElementById("description-text").value;
+                if (description === "") {
+                    return;
+                }
+                let options = {
+                    method: "PUT",
+                    body: JSON.stringify({description: description}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            document.querySelector(".task-description").innerHTML = `<strong>Detail: </strong> <em>${reply.task.description}</em>`;
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+                });
+                document.getElementById("btn-edit-description").removeAttribute("style");
+                document.querySelector(".edit-description").style.display = "none";
+                document.querySelector(".task-description-handler").removeAttribute("style");
+                document.getElementById("description-text").value = "";
+            });
+
+            document.getElementById("btn-edit-deadline").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-deadline").style.display = "none";
+                document.querySelector(".edit-deadline").style.display = "flex";
+                document.querySelector(".task-deadline-handler").style.backgroundColor = "#5d0606";
+            });
+
+            document.getElementById("deadline-edit-cancel-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-deadline").removeAttribute("style");
+                document.querySelector(".edit-deadline").style.display = "none";
+                document.querySelector(".task-deadline-handler").removeAttribute("style");
+                document.getElementById("deadline-date").value = "";
+            });
+
+            document.getElementById("deadline-edit-update-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                let deadline = document.getElementById("deadline-date").value;
+                if (deadline === "") {
+                    return;
+                }
+                let options = {
+                    method: "PUT",
+                    body: JSON.stringify({deadline: deadline}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task/deadline?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            document.querySelector(".task-deadline").innerHTML = `<strong>Deadline: </strong> <em>${new Date(reply.task.deadline).toLocaleTimeString()} </em> on <em>${new Date(reply.task.deadline).toDateString()}</em>`;
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+                });
+                document.getElementById("btn-edit-deadline").removeAttribute("style");
+                document.querySelector(".edit-deadline").style.display = "none";
+                document.querySelector(".task-deadline-handler").removeAttribute("style");
+                document.getElementById("deadline-date").value = "";
+            });
+
+            document.getElementById("btn-edit-assignee").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-assignee").style.display = "none";
+                document.querySelector(".edit-assignee").style.display = "flex";
+                document.querySelector(".task-assignee-handler").style.backgroundColor = "#5d0606";
+            });
+
+            document.getElementById("assignee-edit-cancel-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-assignee").removeAttribute("style");
+                document.querySelector(".edit-assignee").style.display = "none";
+                document.querySelector(".task-assignee-handler").removeAttribute("style");
+                document.getElementById("assignee-name").value = "";
+            });
+
+            document.getElementById("assignee-edit-update-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                let assignee = document.getElementById("assignee-name").value;
+                if (assignee === "") {
+                    return;
+                }
+                let options = {
+                    method: "PUT",
+                    body: JSON.stringify({assignee: assignee}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task/assign?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            document.querySelector(".task-assignee").innerHTML = `<strong>Assignee: </strong> <em>${reply.task.assignee}</em>`;
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+                });
+                document.getElementById("btn-edit-assignee").removeAttribute("style");
+                document.querySelector(".edit-assignee").style.display = "none";
+                document.querySelector(".task-assignee-handler").removeAttribute("style");
+                document.getElementById("assignee-name").value = "";
+            });
+
+            document.getElementById("btn-edit-title").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-title").style.display = "none";
+                document.querySelector(".edit-title-section").style.display = "flex";
+                document.querySelector(".title-edit-button").style.display = "flex";
+                document.querySelector(".task-title-edit-mode").style.backgroundColor = "#5d0606";
+            });
+
+            document.getElementById("title-edit-cancel-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-title").removeAttribute("style");
+                document.querySelector(".edit-title-section").style.display = "none";
+                document.querySelector(".title-edit-button").style.display = "none";
+                document.querySelector(".task-title-edit-mode").removeAttribute("style");
+                document.getElementById("title-text").value = "";
+            });
+
+            document.getElementById("title-edit-update-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                let title = document.getElementById("title-text").value;
+                if (title === "") {
+                    return;
+                }
+                let options = {
+                    method: "PUT",
+                    body: JSON.stringify({title: title}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            document.querySelector(".task-title").innerHTML = reply.task.title;
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+                });
+                document.getElementById("btn-edit-title").removeAttribute("style");
+                document.querySelector(".edit-title-section").style.display = "none";
+                document.querySelector(".title-edit-button").style.display = "none";
+                document.querySelector(".task-title-edit-mode").removeAttribute("style");
+                document.getElementById("title-text").value = "";
+            });
+
+            document.getElementById("btn-edit-task").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-task").style.display = "none";
+                document.getElementById("btn-edit-task-cancel").style.display = "block";
+                edit_mode_switch(true);
+            });
+
+            document.getElementById("btn-edit-task-cancel").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.getElementById("btn-edit-task").removeAttribute("style");
+                document.getElementById("btn-edit-task-cancel").style.display = "none";
+                edit_mode_switch();
+            });
+
+            document.getElementById("retrieve-history-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                document.querySelector(".history-access-section").style.display = "flex";
+                document.getElementById("retrieve-history-btn").style.display = "none";
+                document.getElementById("current-status-btn").style.display = "block";
+            });
+
+            document.getElementById("view-history-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                let history_date = document.getElementById("history-date").value;
+                reset_enteries();
+                if (history_date === "") {
+                    return;
+                }
+                let options = {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task/history?id=${task_id}&timestamp=${history_date}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            task_maker(reply.task, true);
+                            comment_maker(reply.task);
+                            block_edit_and_commenting();
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+
+                });
+            });
+
+            document.getElementById("current-status-btn").addEventListener("click", (event) => {
+                event.preventDefault();
+                let task_id = document.getElementById("find-task-search").value;
+                reset_enteries();
+                let options = {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+                fetch(`/task?id=${task_id}`, options).then(response => {
+                    if (response.status === 200) {
+                        response.json().then(reply => {
+                            block_edit_and_commenting(false);
+                            task_maker(reply.task);
+                            comment_maker(reply.task);
+                            edit_mode_switch();
+                        });
+                    } 
+                    else {
+                        response.json().then(reply => {
+                            document.getElementById("task-found-status").value = reply.message;
+                            document.getElementById("find-status").style.display = "flex";
+                        });
+                    }
+                });
+            });
+                
+        });
+
+    </script>
+
+    <template id="taskComment">
+        <div class="comment">
+            <div class="comment-header">
+                <div class="comment-commentedBy"></div>
+                <div class="comment-timestamp"></div>
+            </div>
+            <div class="comment-text"></div>
+        </div>
+    </template>
+
+    <template id="task-tag">
+        <div class="tag-text-cross">
+            <span class="tag-name"></span>
+            <span class="tag-cross" onclick="removeTag(this)">&#10006;</span>
+        </div>
+    </template>
+
+</head>
+
+<body>
+    <div class="app">
+        <div class="navbar">
+            Task Tracker Board
+        </div>
+        <div class="tab">
+            <form>
+                <button type="submit" id="btn-board-all" class="tablinks" formaction="task_collection.html">Tasks</button>
+                <button type="submit" id="btn-list-all" class="tablinks" formaction="list_view.html">List View</button>
+                <button type="submit" class="tablinks" formaction="task_creation.html">Create Task</button>
+            </form>
+        </div>
+
+        <div id="find-task">
+            <div class="flex-find">
+                <form>
+                    <div class = 'input_flex_find'>
+                        <label for="find-task-search">Task ID</label>
+                        <input type="text" id="find-task-search">
+                    </div>
+                    <div>
+                        <button type="submit" id="btn-find-task">Search</button>
+                    </div>
+                    <div id="find-status" style="display: none;">
+                        <label for="task-found-status">Error</label>
+                        <input type="text" id="task-found-status" readonly>
+                    </div>
+                </form>
+            </div>
+            <div class="task-history-handler" style="display: none;">
+                <div class="history-access">
+                    <div class="task-history-label">
+                        <label for="history-value">Task status at </label>
+                        <em id="history-value"></em>
+                    </div>
+                    <button id="retrieve-history-btn">Access History</button>
+                </div>
+                <div class="history-access-section" style="display: none;">
+                    <label for="history-date">Select Date/Time</label>
+                    <input type="datetime-local" id="history-date" min="" max="">
+                    <button id="view-history-btn">View</button>
+                </div>
+                <button id="current-status-btn" style="display: none;">Current State</button>
+            </div>
+                    
+            <div class="task-title-edit-mode">
+                <div class="task-title-edit-btn-row">
+                    <div class="task-title"></div>
+                    <button id="btn-edit-title">Edit Title</button>
+                </div>
+                <div class="edit-title-section" style="display: none;">
+                    <label for="title-text">Title</label>
+                    <input type="text" id="title-text">
+                </div>
+                <div class="title-edit-button" style="display: none;">
+                    <button id="title-edit-cancel-btn">Cancel</button>
+                    <button id="title-edit-update-btn">Update</button>
+                </div>
+            </div>
+            
+            <div class="flex-container">
+                <div class="flex-task-details" style="display: none;">
+                    <h2>Task information</h2>
+                    <div class="task">
+                        <div class="task-status">
+                            <div class="status-text-edit">
+                                <p></p>
+                                <button id="btn-edit-status">Edit State</button>
+                            </div>
+                            <div class="edit-status">
+                                <div class="state-change-div" style="display: none;">
+                                    <div class="status-select-options">
+                                        <label for="select-task-status">States</label>
+                                        <select id="select-task-status">
+                                            <option value="To Do">To Do</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Done">Done</option>
+                                            <option value="In Review">In Review</option>
+                                            <option value="Backlog">Backlog</option>
+                                        </select>
+                                        <button id="add-new-status">Custom State</button>
+                                    </div>
+                                    <div class="new-user-status" style="display: none;">
+                                        <label for="new-status">New State</label>
+                                        <input type="text" id="new-status">
+                                        <button id="btn-add-status">Add</button>
+                                    </div>
+                                </div>
+                                <div class="status-edit-main-btn">
+                                    <button id="btn-update-status" style="display: none;">Update</button>
+                                    <button id="btn-cancel-status-edit" style="display: none;">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-tags-handler">
+                            <div class="tag-editbtn-tag-row">
+                                <button id="btn-edit-tags">Edit Tags</button>
+                                <div class="task-tags">
+                                    <h3 class="tags-placeholder" style="display: none;">Tags list</h3>
+                                </div>
+                            </div>
+                            <div class="new-tag" style="display: none;">
+                                <label for="new-tag">New Tag:</label>
+                                <input type="text" id="new-tag">
+                                <button id="btn-add-tag">Add</button>
+                            </div>
+                            <div class="tags-btn" style="display: none;">
+                                <button id="btn-cancel-tags">Cancel</button>
+                                <button id="btn-save-tags-change">Save</button>
+                            </div>
+                        </div>
+                        <div class="task-priority-handler">
+                            <div class="priority-editbtn-row">
+                                <div class="task-priority"></div>
+                                <button id="btn-edit-priority">Edit Priority</button>
+                            </div>
+                            <div class="edit-priority" style="display: none;">
+                                <div class="edit-priority-section">
+                                    <label for="priority-level">Priority Level</label>
+                                    <select id="priority-level">
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                    </select>
+                                </div>
+                                <div class="priority-edit-button">
+                                    <button id="priority-edit-cancel-btn">Cancel</button>
+                                    <button id="priority-edit-update-btn">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-description-handler">
+                            <div class="description-editbtn-row">
+                                <div class="task-description"></div>
+                                <button id="btn-edit-description">Edit details</button>
+                            </div>
+                            <div class="edit-description" style="display: none;">
+                                <div class="edit-description-section">
+                                    <label for="description-text">Description</label>
+                                    <textarea type="text" rows="5" id="description-text" placeholder="Enter details here..."></textarea>
+                                </div>
+                                <div class="description-edit-button">
+                                    <button id="description-edit-cancel-btn">Cancel</button>
+                                    <button id="description-edit-update-btn">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-deadline-handler">
+                            <div class="deadline-editbtn-row">
+                                <div class="task-deadline"></div>
+                                <button id="btn-edit-deadline">Change Deadline</button>
+                            </div>
+                            <div class="edit-deadline" style="display: none;">
+                                <div class="edit-deadline-section">
+                                    <label for="deadline-date">Deadline</label>
+                                    <input type="datetime-local" id="deadline-date">
+                                </div>
+                                <div class="deadline-edit-button">
+                                    <button id="deadline-edit-cancel-btn">Cancel</button>
+                                    <button id="deadline-edit-update-btn">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-creation-date"></div>
+                        <div class="task-assignee-handler">
+                            <div class="assignee-editbtn-row">
+                                <div class="task-assignee"></div>
+                                <button id="btn-edit-assignee">Edit Assignee</button>
+                            </div>
+                            <div class="edit-assignee" style="display: none;">
+                                <div class="edit-assignee-section">
+                                    <label for="assignee-name">Assign to</label>
+                                    <input type="text" id="assignee-name">
+                                </div>
+                                <div class="assignee-edit-button">
+                                    <button id="assignee-edit-cancel-btn">Cancel</button>
+                                    <button id="assignee-edit-update-btn">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-edit-mode-section">
+                        <button id="btn-edit-task">Edit Mode</button>
+                        <button id="btn-edit-task-cancel" style="display: none;">Edit Mode Off</button>
+                    </div>
+                </div>
+                <div class="flex-container-comments" style="display: none;">
+                    <h2>Comments</h2>
+                    <div class="comment-list"></div>
+                    <div class="comment-form" style="display: none;">
+                        <form>
+                            <div class="comment-form-name">
+                                <label for="comment-by">Name</label>
+                                <input type="text" id="comment-by">
+                            </div>
+                            <div class="comment-form-text">
+                                <textarea type="text" rows="10" id="comment-text" placeholder="Type your comment here..."></textarea>
+                            </div>
+                            <div id="comment-status" style="display: none;">
+                                <label for="task-found-status">Error</label>
+                                <input type="text" id="comment-send-status" readonly>
+                            </div>
+                            <div class="comment-form-button">
+                                <button type="submit" id="btn-comment">Send</button>
+                                <button type="submit" id="btn-cancel">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    <button id="click-to-add-comment">Add Comment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
