@@ -100,9 +100,10 @@ suite('Checking the API calls', () => {
   // Test for getTaskDetailByTimestamp
   test('Returns task history detail by timestamp', async () => {
     let server_agent = request.agent(app);
-    let response = await server_agent.get('/task/history').query({ id: '1', timestamp: '2025-01-01T00:00:00Z' });
+    let current_time = new Date().toISOString();
+    let response = await server_agent.get('/task/history').query({ id: '1', timestamp: current_time });
     assert.strictEqual(response.status, 200);
-    assert(new Date(response.body.task.updatedAt) <= new Date('2025-01-01T00:00:00Z'));
+    assert(new Date(response.body.task.updatedAt) <= new Date(current_time));
   });
 
   test('Returns 404 if no history found for timestamp', async () => {

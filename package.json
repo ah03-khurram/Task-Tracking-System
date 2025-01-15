@@ -7,7 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "tests",
+    "test": "node --test .\\tests\\apiTests.mjs",
     "start": "node serve.mjs"
   },
   "author": "",
