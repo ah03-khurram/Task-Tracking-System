@@ -8,21 +8,49 @@ The Task Tracking System is a project management tool designed to help teams and
 
 ### Task Management
 - **Create Task**: Users can create new tasks with details such as title, description, priority, deadline, and assignee. Implemented in [`taskManager.createTask`](taskManager.mjs).
-    <video controls src="Videos/Create Task.mp4" title="Create Task"></video>
+    
+
+https://github.com/user-attachments/assets/334a543d-da04-4820-ae62-ee05bd93fa1e
+
+
 - **Update Task**: Users can update task details including title, description, priority, deadline, and assignee. Implemented in [`taskManager.updateTask`](taskManager.mjs).
-    <video controls src="Videos/Update Task.mp4" title="Update Task"></video>
+    
+
+https://github.com/user-attachments/assets/e10b07e4-2615-4135-b618-49794a7b492c
+
+
 - **Task History**: Users can view the history of a task to see changes made over time. Implemented in [`taskManager.getTaskDetailByTimestamp`](taskManager.mjs).
-    <video controls src="Videos/Task History.mp4" title="Task History"></video>
+    
+
+
+https://github.com/user-attachments/assets/91fd8607-d8b6-4760-b930-1ee8bafce746
+
 
 ### Task Attributes
 - **Priority Levels**: Tasks can be assigned priority levels (Low, Medium, High) to indicate their importance.
-    <video controls src="Videos/Priority Levels.mp4" title="Priority Levels"></video>
+    
+
+https://github.com/user-attachments/assets/9eb83c17-e175-401f-94b2-ccb4dd318bb8
+
+
 - **Deadlines**: Users can set deadlines for tasks to ensure timely completion.
-    <video controls src="Videos/Deadlines.mp4" title="Deadlines"></video>
+    
+
+https://github.com/user-attachments/assets/3151d77f-6b70-4d0c-9a9c-2953e2277c2c
+
+
 - **Tags**: Users can add tags to tasks for better categorization. Implemented in [`taskManager.addTaskTags`](taskManager.mjs) and [`taskManager.removeTaskTags`](taskManager.mjs).
-    <video controls src="Videos/Tags.mp4" title="Tags"></video>
+    
+
+https://github.com/user-attachments/assets/bc91e76e-3f32-4e9c-887e-d80f81991483
+
+
 - **Comments**: Users can add comments to tasks for better collaboration and communication. Implemented in [`taskManager.addTaskComment`](taskManager.mjs).
-    <video controls src="Videos/Comments.mp4" title="Comments"></video>
+    
+
+
+https://github.com/user-attachments/assets/53515e64-6aa5-45d7-8988-e20e357237eb
+
 
 ### Views
 - **Kanban Board**: A visual representation of tasks in different states (To Do, In Progress, Done, etc.) using a Kanban board. Implemented in [public/task_collection.html](public/task_collection.html).
@@ -32,7 +60,11 @@ The Task Tracking System is a project management tool designed to help teams and
 
 ### Search and Filter
 - **Find Task**: Users can search for tasks by ID and view their details. Implemented in [public/find_task.html](public/find_task.html).
-    <video controls src="Videos/Find Task.mp4" title="Find Task"></video>
+    
+
+
+https://github.com/user-attachments/assets/399eafaf-718a-4e33-8561-8b05d798df5e
+
 
 ### User Interaction
 - **Edit Mode**: Users can switch to edit mode to update task details.
