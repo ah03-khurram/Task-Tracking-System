@@ -69,7 +69,11 @@ https://github.com/user-attachments/assets/399eafaf-718a-4e33-8561-8b05d798df5e
 ### User Interaction
 - **Edit Mode**: Users can switch to edit mode to update task details.
 - **Drag and Drop**: Tasks can be moved between different states on the Kanban board using drag and drop.
-    <video controls src="Videos/Drag and Drop.mp4" title
+    
+
+https://github.com/user-attachments/assets/6c1e1620-f28e-426c-8736-6b75e34f2af2
+
+
 
 ## Installation
 
